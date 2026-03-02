@@ -1,9 +1,9 @@
 {
   "displayName": "Demo",
-  "uatEndDate": "2026-03-02",
+  "uatEndDate": "2026-05-02",
   "devSiteUrl": "www.website.com",
   "uatFolderUrl": "https://drive.google.com",
-  "contactEmails": "address@email.com",
+  "contactEmails": "them@website.com, me@email.com, you@email.com",
   "passwordHash": "84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec",
   "version": 60,
   "columns": [
