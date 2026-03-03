@@ -1,5 +1,5 @@
 {
-  "displayName": "Demo",
+  "displayName": "Demo Account",
   "uatEndDate": "2026-05-02",
   "devSiteUrl": "www.website.com",
   "uatFolderUrl": "https://drive.google.com",
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "done",
-      "title": "Done",
+      "id": "approved",
+      "title": "Approved",
       "items": [
         {
           "id": 1771877282041,
