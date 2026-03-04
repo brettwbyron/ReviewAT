@@ -32,17 +32,15 @@
 	</script>
 </svelte:head>
 
-<div class="layout">
-	<main class="content">{@render children()}</main>
+<main class="content">{@render children()}</main>
 	
-	<button
-		class="theme-toggle-fixed"
-		onclick={switchTheme}
-		aria-label="Toggle theme"
-	>
-		<span class="theme-toggle-icon"></span>
-	</button>
-</div>
+<button
+	class="theme-toggle-fixed"
+	onclick={switchTheme}
+	aria-label="Toggle theme"
+>
+	<span class="theme-toggle-icon"></span>
+</button>
 
 <style>
 	:global(html) {
@@ -50,9 +48,9 @@
 		--bg-1: #f8f9fc;
 		--bg-2: #ffffff;
 		--bg-3: #e8eaf0;
-		--fg-1: #061419;
-		--fg-2: #454D59;
-		--fg-3: #8792a8;
+		--fg-1: #1e1e1e;
+		--fg-2: #444444;
+		--fg-3: #aeafad;
 		--primary: #3cb7ff;
 		--primary-fg: #004770;
 		--primary-bg: #b3e3ff;
@@ -99,10 +97,10 @@
 	:global(html.dark) {
 		color-scheme: dark;
 		--bg-1: #0f1117;
-		--bg-2: #061419;
-		--bg-3: #272d45;
+		--bg-2: #1e1e1e;
+		--bg-3: #444444;
 		--fg-1: #f8f9fc;
-		--fg-2: #b4bcd0;
+		--fg-2: #aeafad;
 		--fg-3: #8792a8;
 		--primary-bg: #004770;
 		--primary-fg: #b3e3ff;
@@ -125,8 +123,21 @@
 		margin: 0;
 	}
 
-	.content {
+	main {
 		color: var(--fg-1);
+		min-height: 100vh;
+		width: 100vw;
+		display: flex;
+		flex-direction: column;
+	}
+
+	:global(.container) {
+		width: 100%;
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: 2rem 2rem;
+		box-sizing: border-box;
+		flex: 1;
 	}
 
 	.theme-toggle-fixed {

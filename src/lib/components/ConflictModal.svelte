@@ -63,6 +63,7 @@
     onkeydown={(e) => e.key === 'Escape' && onCancel()}
     role="button" 
     tabindex="-1"
+    {@attach trapFocus}
   >
     <div
       class="modal conflict-modal"

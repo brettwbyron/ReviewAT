@@ -1,20 +1,20 @@
 <script lang="ts">
   let {
-    customerId = $bindable<string>(''),
     usernameInput = $bindable<string>(''),
     passwordInput = $bindable<string>(''),
     passwordError = $bindable<string>(''),
     isLoading = $bindable<boolean>(false),
     onSubmit,
-    onForgotPassword
+    onForgotPassword,
+    onAdminLogin
   }: {
-    customerId: string;
     usernameInput: string;
     passwordInput: string;
     passwordError: string;
     isLoading: boolean;
     onSubmit: () => void;
     onForgotPassword: () => void;
+    onAdminLogin?: () => void;
   } = $props();
 
   function handleSubmit(e: Event) {
@@ -23,12 +23,8 @@
   }
 </script>
 
-<div class="login-container">
+<div class="container login-container">
   <div class="login-box">
-    {#if customerId}
-      <p class="customer-id">Customer: <strong>{customerId}</strong></p>
-    {/if}
-
     <form onsubmit={handleSubmit}>
       <div class="form-group">
         <label for="username">Username</label>
@@ -37,7 +33,6 @@
           id="username"
           bind:value={usernameInput}
           placeholder="Enter your username"
-          disabled={!!customerId}
           required
         />
       </div>
@@ -66,6 +61,12 @@
       <button type="button" class="forgot-password-link" onclick={onForgotPassword}>
         Forgot your password?
       </button>
+      {#if onAdminLogin}
+        <br />
+        <button type="button" class="admin-login-link" onclick={onAdminLogin}>
+          Login as admin
+        </button>
+      {/if}
     </p>
   </div>
 </div>
@@ -75,8 +76,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background: var(--bg-1);
     padding: 2rem;
   }
 
@@ -88,20 +87,6 @@
     width: 100%;
     max-width: 400px;
     border: 1px solid var(--bg-3);
-  }
-
-  .customer-id {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    color: var(--fg-2);
-  }
-
-  .customer-id strong {
-    color: var(--fg-1);
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 1.3rem;
   }
 
   .form-group {
@@ -193,5 +178,21 @@
   
   .forgot-password-link:hover {
     color: var(--primary-hover);
+  }
+
+  .admin-login-link {
+    background: none;
+    border: none;
+    color: var(--fg-1);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0;
+    margin-top: 0.5rem;
+    transition: color 0.2s;
+  }
+  
+  .admin-login-link:hover {
+    color: var(--fg-2);
   }
 </style>

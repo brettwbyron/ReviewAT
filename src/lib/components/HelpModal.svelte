@@ -69,13 +69,13 @@
           <p>You'll also need to set any items that has failed during re-test back to "To Do"</p>
         </div>
 
-        <div class="modal-section alert-variant">
-          <h3>Needs Feedback</h3>
-          <p>Requires your attention, please check under the "FEEDBACK" column as we will input any questions on there</p>
+        <div class="modal-section warning-variant">
+          <h3>Feedback Needed</h3>
+          <p>Requires your attention, please check under the "Feedback Needed" column as we will input any questions on there</p>
           <p>Please change the status to "To Do" after you have provided your feedback</p>
         </div>
 
-        <div class="modal-section warning-variant">
+        <div class="modal-section alert-variant">
           <h3>Re-Test</h3>
           <p>Item has been updated and is ready to be tested again</p>
         </div>

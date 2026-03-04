@@ -132,7 +132,7 @@
 </script>
 
 {#if !isAuthenticated}
-  <div class="admin-container">
+  <div class="container admin-container">
     <div class="admin-box">
       <h1>Admin Access</h1>
       <p class="subtitle">Enter admin password to continue</p>
@@ -160,7 +160,7 @@
     </div>
   </div>
 {:else}
-  <div class="admin-container">
+  <div class="container admin-container">
     <div class="admin-box">
       <h1>Admin Mode</h1>
       <p class="subtitle">Select a customer to view their board</p>
@@ -309,11 +309,9 @@
 
 <style>
   .admin-container {
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-1);
     padding: 2rem;
   }
 

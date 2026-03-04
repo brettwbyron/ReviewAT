@@ -6,7 +6,7 @@ export type DeviceType = typeof DEVICE_TYPES[number];
 export type TaskType = typeof TASK_TYPES[number];
 export type OwnerType = typeof OWNER_TYPES[number];
 
-export type ColumnId = 'todo' | 'inprogress' | 'retest' | 'feedback' | 'done' | 'cancelled';
+export type ColumnId = 'todo' | 'inprogress' | 'retest' | 'feedback' | 'approved' | 'cancelled';
 
 export interface FeedbackItem {
 	text: string;

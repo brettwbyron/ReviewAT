@@ -13,6 +13,7 @@
     customerId,
     columns,
     isAdmin,
+    isAdminAuthenticated = false,
     searchQuery = $bindable<string>(''),
     filterType = $bindable<TaskType | 'All'>('All'),
     filterOwner = $bindable<OwnerType | 'All'>('All'),
@@ -21,6 +22,7 @@
     disableAddTask = $bindable(false),
     onAddTask,
     onHelp,
+    onToggleAdminView,
     onItemDragStart,
     onItemClick,
     onToggleLock,
@@ -38,6 +40,7 @@
     customerId: string;
     columns: Column[];
     isAdmin: boolean;
+    isAdminAuthenticated?: boolean;
     searchQuery: string;
     filterType: TaskType | 'All';
     filterOwner: OwnerType | 'All';
@@ -46,6 +49,7 @@
     disableAddTask: boolean;
     onAddTask: () => void;
     onHelp: () => void;
+    onToggleAdminView?: () => void;
     onItemDragStart: (e: DragEvent, item: Task, columnId: ColumnId) => void;
     onItemClick: (item: Task, columnId: ColumnId) => void;
     onToggleLock: (itemId: number) => void;
@@ -123,7 +127,7 @@
     if (columnId === 'feedback') return 'warning';
     if (columnId === 'retest') return 'alert';
     if (columnId === 'todo') return 'info';
-    if (columnId === 'done') return 'success';
+    if (columnId === 'approved') return 'success';
     if (columnId === 'inprogress' || columnId === 'cancelled') return 'subtle';
     return 'default';
   }
@@ -272,15 +276,26 @@
           </div>
         {/if}
       </div>
-      {#if isAdmin}
-        <ButtonComponent 
-          element="button"
-          text="Edit Account Info"
-          type="primary"
-          size="small"
-          onClick={startEditingAccountInfo}
-        />
-      {/if}
+      <div class="button-group">
+        {#if isAdmin}
+          <ButtonComponent 
+            element="button"
+            text="Edit Account Info"
+            type="primary"
+            size="small"
+            onClick={startEditingAccountInfo}
+          />
+        {/if}
+        {#if isAdminAuthenticated}
+          <ButtonComponent
+            element="button"
+            text={isAdmin ? "View as Customer" : "View as Admin"}
+            onClick={onToggleAdminView}
+            type="primary"
+            size="small"
+          />
+        {/if}
+      </div>
     {/if}
     {#if isAdmin}
       <div class="admin-controls">
@@ -391,12 +406,6 @@
 </div>
 
 <style>
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
   .account-info {
     margin-bottom: 2rem;
     gap: 1em;
@@ -404,24 +413,26 @@
     flex-direction: column;
   }
 
-  .account-info h1 {
-    margin: 0;
-    color: var(--fg-1);
-    font-size: 2rem;
-  }
-
   .header-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 2rem;
     flex-wrap: wrap;
+  }
+
+  .header-container h1 {
+    margin: 0;
+    color: var(--fg-1);
+    font-size: 2rem;
+    flex: 1;
   }
 
   .uat-info-section {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex: 0 0 auto;
   }
 
   .uat-date-container {
@@ -512,6 +523,13 @@
     display: flex;
     gap: 1rem;
     margin-top: 1.5rem;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.75rem;
   }
 
   .admin-controls {

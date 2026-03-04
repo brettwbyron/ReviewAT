@@ -75,7 +75,7 @@ export function getDefaultColumns(): Column[] {
     { id: 'inprogress', title: 'In Progress', items: [] },
     { id: 'retest', title: 'Re-Test', items: [] },
     { id: 'feedback', title: 'Feedback Needed', items: [] },
-    { id: 'done', title: 'Done', items: [] },
+    { id: 'approved', title: 'Approved', items: [] },
     { id: 'cancelled', title: 'Cancelled', items: [] }
   ];
 }

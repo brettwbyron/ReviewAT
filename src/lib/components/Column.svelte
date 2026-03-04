@@ -96,7 +96,12 @@
       <span class="count">({column.items.length})</span>
     </span>
     {#if isDropDisabled || isDragDisabled}
-      <span class="admin-only" title="Cannot {isDropDisabled ? `${isDragDisabled ? 'drag or ' : ''}drop to` : 'drag from'} this column">🔒</span>
+      <span class="admin-only" title="Cannot {isDropDisabled ? `${isDragDisabled ? 'drag or ' : ''}drop to` : 'drag from'} this column">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect fill="currentColor" x="5" y="11" width="14" height="10" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </span>
     {/if}
   </h2>
   <div class="items" role="list" aria-label="{column.title} tasks">
@@ -187,8 +192,7 @@
     color: var(--error-fg);
   }
 
-  .column.alert h2 .count,
-  .column.alert h2 .admin-only {
+  .column.alert h2 .count {
     color: var(--error-fg);
   }
 
@@ -202,8 +206,7 @@
     color: var(--warning-fg);
   }
 
-  .column.warning h2 .count,
-  .column.warning h2 .admin-only {
+  .column.warning h2 .count {
     color: var(--warning-fg);
   }
 
@@ -217,8 +220,7 @@
     color: var(--info-fg);
   }
 
-  .column.info h2 .count,
-  .column.info h2 .admin-only {
+  .column.info h2 .count {
     color: var(--info-fg);
   }
 
@@ -232,8 +234,7 @@
     color: var(--success-fg);
   }
 
-  .column.success h2 .count,
-  .column.success h2 .admin-only {
+  .column.success h2 .count {
     color: var(--success-fg);
   }
 
@@ -259,6 +260,7 @@
   .admin-only {
     font-size: 0.9rem;
     opacity: 0.7;
+    width: 1em;
   }
   
   .column.drop-disabled {
@@ -316,26 +318,22 @@
   }
 
   :global(html.dark) .column.alert h2,
-  :global(html.dark) .column.alert h2 .count,
-  :global(html.dark) .column.alert h2 .admin-only {
+  :global(html.dark) .column.alert h2 .count {
     color: #ffcdd2;
   }
 
   :global(html.dark) .column.warning h2,
-  :global(html.dark) .column.warning h2 .count,
-  :global(html.dark) .column.warning h2 .admin-only {
+  :global(html.dark) .column.warning h2 .count {
     color: #ffe0b2;
   }
 
   :global(html.dark) .column.info h2,
-  :global(html.dark) .column.info h2 .count,
-  :global(html.dark) .column.info h2 .admin-only {
+  :global(html.dark) .column.info h2 .count {
     color: #bbdefb;
   }
 
   :global(html.dark) .column.success h2,
-  :global(html.dark) .column.success h2 .count,
-  :global(html.dark) .column.success h2 .admin-only {
+  :global(html.dark) .column.success h2 .count {
     color: #c8e6c9;
   }
 </style>
