@@ -120,8 +120,7 @@
     }
   }
 
-  .button-primary,
-  .button-save {
+  .button-primary {
     background-color: var(--primary);
     color: var(--bg-2);
     border-color: var(--primary);
@@ -158,7 +157,8 @@
     }
   }
 
-  .button-gradient {
+  .button-gradient,
+  .button-save {
     background: var(--primary) !important;
     border-color: transparent !important;
     color: var(--bg-1) !important;

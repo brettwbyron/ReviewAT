@@ -560,7 +560,7 @@
               <ButtonComponent 
                 element="button"
                 text="+ Attach Image"
-                type="secondary"
+                type="primary"
                 size="small"
                 onClick={() => fileInput?.click()}
               />
@@ -599,7 +599,7 @@
             <ButtonComponent 
               element="button"
               text="Save"
-              type="primary"
+              type="save"
               onClick={handleSaveClick}
             />
           {/if}

@@ -225,15 +225,15 @@
         <div class="form-actions">
           <ButtonComponent 
             element="button"
-            text="Save"
-            type="save"
-            onClick={saveAccountInfo}
-          />
-          <ButtonComponent 
-            element="button"
             text="Cancel"
             type="cancel"
             onClick={cancelEditingAccountInfo}
+          />
+          <ButtonComponent 
+            element="button"
+            text="Save"
+            type="save"
+            onClick={saveAccountInfo}
           />
         </div>
       </div>
@@ -529,6 +529,7 @@
     display: flex;
     gap: 1rem;
     margin-top: 1.5rem;
+    justify-content: flex-end;
   }
 
   .button-group {
