@@ -5,7 +5,7 @@
   "uatFolderUrl": "https://drive.google.com",
   "contactEmails": "them@website.com, me@email.com, you@email.com",
   "passwordHash": "84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec",
-  "version": 60,
+  "version": 1,
   "columns": [
     {
       "id": "todo",
