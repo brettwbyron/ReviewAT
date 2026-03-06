@@ -253,27 +253,30 @@
                   return new Date(year, month - 1, day).toLocaleDateString();
                 })()}
                 {#if daysRemaining !== null && daysRemaining >= 0}
-                  ({daysRemaining} day{daysRemaining !== 1 ? 's' : ''} remaining)
+                  <span class="subtle-text">(Fixes start in {daysRemaining} day{daysRemaining !== 1 ? 's' : ''})</span>
                 {/if}
               {/if}
             </span>
-            {#if isUatEndingSoon}
-              <p class="uat-deadline-warning">Once this deadline passes, no tasks may be added</p>
+            {#if !isUatEndingSoon}
+              <p class="uat-deadline-warning subtle-text">Once this deadline passes, no tasks may be added</p>
+            {/if}
+            {#if isUatExpired}
+              <p class="uat-deadline-warning subtle-text">UAT submission deadline has passed, no tasks may be added</p>
             {/if}
             </div>
-            {#if uatFolderUrl}
-              <ButtonComponent 
-                element="a"
-                text="UAT Folder"
-                title="Upload images and other assets to this folder."
-                href={uatFolderUrl.startsWith('http') ? uatFolderUrl : `https://${uatFolderUrl}`}
-                type="primary"
-                size="small"
-                target="_blank"
-                rel="nofollow noopener"
-              />
-            {/if}
           </div>
+        {/if}
+        {#if uatFolderUrl}
+          <ButtonComponent 
+            element="a"
+            text="UAT Folder"
+            title="Upload images and other assets to this folder."
+            href={uatFolderUrl.startsWith('http') ? uatFolderUrl : `https://${uatFolderUrl}`}
+            type="primary"
+            size="small"
+            target="_blank"
+            rel="nofollow noopener"
+          />
         {/if}
       </div>
       <div class="button-group">
@@ -415,7 +418,7 @@
 
   .header-container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 2rem;
     flex-wrap: wrap;
@@ -441,15 +444,18 @@
     align-items: center;
   }
 
+  .subtle-text {
+    font-size: 0.8125rem;
+    opacity: 0.7;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
   .uat-deadline-warning {
     position: absolute;
     top: 100%;
     left: 0;
     margin: 0.375rem 0 0 0;
-    font-size: 0.8125rem;
-    color: var(--fg-3);
-    font-style: italic;
-    white-space: nowrap;
   }
 
   .uat-end-date {

@@ -56,6 +56,8 @@
 <style>
   .button {
     border-radius: var(--border-radius);
+    border-width: 2px;
+    border-style: solid;
     padding: 13px 25px;
     display: inline-flex;
     align-items: center;
@@ -65,10 +67,14 @@
     font-weight: 600;
     font-size: 1rem;
     transition: all .15s ease-in-out;
-    border: 2px solid #fff;
     line-height: 24px;
     text-decoration: none;
     background-color: transparent;
+    cursor: pointer;
+
+    span {
+      transition: color .15s ease-in-out;
+    }
 
     &:hover {
       background-color: transparent;
@@ -131,7 +137,6 @@
     }
   }
   
-  .button-tertiary,
   .button-cancel {
     background-color: var(--bg-3);
     border-color: var(--bg-3);
@@ -152,6 +157,34 @@
       color: var(--error);
     }
   }
+
+  .button-gradient {
+    background: var(--primary) !important;
+    border-color: transparent !important;
+    color: var(--bg-1) !important;
+
+    &::after {
+      content: '';
+      position: absolute;
+      padding: 2px;
+      margin: -2px;
+      inset: 0;
+      border-radius: var(--border-radius);
+      transition: opacity 0.5s ease;
+      opacity: 1;
+      background: var(--primary-gradient);
+    }
+
+    span {
+      z-index: 1;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
   
   .button-hollow {
     background-color: transparent;
@@ -159,19 +192,49 @@
     color: var(--fg-1);
 
     &:hover {
-      background-color: #fff;
       border-color: var(--primary);
     }
   }
 
-  .button-hollow-primary {
-    background-color: transparent;
-    border-color: var(--primary);
+  .button-hollow-gradient {
+    background: transparent;
+    border-color: transparent;
     color: var(--fg-1);
 
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      padding: 2px;
+      margin: -2px;
+      inset: 0;
+      border-radius: var(--border-radius);
+    }
+
+    &::before {
+      background: var(--primary-gradient);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    &::after {
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      background: var(--primary-gradient);
+    }
+
+    span {
+      z-index: 1;
+    }
+
     &:hover {
-      background-color: var(--primary);
-      color: #fff;
+      &::after {
+        opacity: 1;
+      }
+
+      span {
+        color: var(--bg-1);
+      }
     }
   }
 </style>

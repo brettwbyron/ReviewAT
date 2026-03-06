@@ -83,6 +83,16 @@
   type ViewMode = 'landing' | 'customerLogin' | 'adminLogin';
   let viewMode = $state<ViewMode>('landing');
 
+  // Debug
+  $inspect('customerId',customerId).with(console.log);
+  $inspect('isAuthenticated',isAuthenticated).with(console.log);
+  $inspect('isAdmin',isAdmin).with(console.log);
+  $inspect('usernameInput',usernameInput).with(console.log);
+  $inspect('passwordInput',passwordInput).with(console.log);
+  $inspect('viewMode',viewMode).with(console.log);
+  $inspect('isAdminMode',isAdminMode).with(console.log);
+  $inspect('isAdminAuthenticated',isAdminAuthenticated).with(console.log);
+
   // Session storage helpers
   function getSessionKey(id: string): string {
     return `uat-session-${id}`;
@@ -1032,6 +1042,33 @@
     </a>
   </div>
   <div class="nav-right">
+    {#if isAuthenticated}
+      {#if !customerRoute && !isAdminRoute}
+        <ButtonComponent
+          element="button"
+          text="Dashboard"
+          onClick={() => goToAccount(`/${usernameInput}`)}
+          type="hollow"
+        />
+      {/if}
+      {#if contactEmails}
+        <ButtonComponent
+          text="Notify Team"
+          href={getNotifyTeamMailto()}
+          type="hollow"
+        />
+      {/if}
+      {#if devSiteUrl}
+        <ButtonComponent
+          text="Open Review Link"
+          href={devSiteUrl.startsWith('http') ? devSiteUrl : `https://${devSiteUrl}`}
+          type="hollow"
+          target="_blank"
+          rel="nofollow noopener"
+        />
+      {/if}
+    {/if}
+
     {#if isAdminAuthenticated && !isAdminRoute}
       <ButtonComponent
         element="button"
@@ -1040,44 +1077,20 @@
         type="hollow"
       />
     {/if}
-    {#if !isAdminAuthenticated && !isAdminRoute && !customerRoute && (viewMode === 'customerLogin' || viewMode === 'landing')}
-      <ButtonComponent
-        element="button"
-        text="Admin Login"
-        onClick={showAdminLogin}
-        type="hollow-primary"
-      />
-    {/if}
-    {#if isAuthenticated && !customerRoute && !isAdminRoute}
-      <ButtonComponent
-        element="button"
-        text="Account"
-        onClick={() => goToAccount(`/${usernameInput}`)}
-        type="hollow"
-      />
-    {/if}
-    {#if !isAuthenticated && !isAdminAuthenticated && !isAdminRoute && !customerRoute && viewMode === 'landing'}
+    {#if !isAuthenticated && !isAdminAuthenticated}
+      {#if !isAdminRoute && !customerRoute && (viewMode === 'customerLogin' || viewMode === 'landing')}
+        <ButtonComponent
+          element="button"
+          text="Admin Login"
+          onClick={showAdminLogin}
+          type="hollow-gradient"
+        />
+      {/if}
       <ButtonComponent
         element="button"
         text="Login"
         onClick={showCustomerLogin}
-        type="primary"
-      />
-    {/if}
-    {#if isAuthenticated && contactEmails}
-      <ButtonComponent
-        text="Notify Team"
-        href={getNotifyTeamMailto()}
-        type="hollow"
-      />
-    {/if}
-    {#if isAuthenticated && devSiteUrl}
-      <ButtonComponent
-        text="Open Review Link"
-        href={devSiteUrl.startsWith('http') ? devSiteUrl : `https://${devSiteUrl}`}
-        type="hollow"
-        target="_blank"
-        rel="nofollow noopener"
+        type="gradient"
       />
     {/if}
     {#if isAuthenticated || isAdminAuthenticated}

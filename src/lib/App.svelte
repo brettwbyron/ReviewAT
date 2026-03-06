@@ -44,7 +44,7 @@
 
 <style>
 	:global(html) {
-		margin: 0;
+		/* Colors */
 		--bg-1: #f8f9fc;
 		--bg-2: #ffffff;
 		--bg-3: #e8eaf0;
@@ -60,20 +60,25 @@
 		--success: #0d783f;
 		--success-fg: #064e3b;
 		--success-bg: #bff8d9;
-		--success-gradient: linear-gradient(135deg, hsl(148, 76%, 97%) 0%, hsl(148, 84%, 93%) 100%);
 		--info: #3730a3;
 		--info-fg: #332e7f;
 		--info-bg: #bbdefb;
-		--info-gradient: linear-gradient(135deg, hsl(207, 89%, 96%) 0%, hsl(207, 89%, 86%) 100%);
 		--warning: #f59e0b;
 		--warning-fg: #92400e;
 		--warning-bg: #fef3c7;
-		--warning-gradient: linear-gradient(135deg, hsl(38, 92%, 95%) 0%, hsl(38, 92%, 85%) 100%);
 		--error: #ef4444;
 		--error-fg: #991b1b;
 		--error-bg: #ffcdd2;
+
+		/* Gradients */
+		--primary-gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+		--primary-gradient--transparent: linear-gradient(135deg, #3cb7ff00 0%, #6c90 100%);
+		--primary-gradient--active: linear-gradient(135deg, var(--primary) 80%, var(--secondary) 100%);;
+		--success-gradient: linear-gradient(135deg, hsl(148, 76%, 97%) 0%, hsl(148, 84%, 93%) 100%);
+		--info-gradient: linear-gradient(135deg, hsl(207, 89%, 96%) 0%, hsl(207, 89%, 86%) 100%);
+		--warning-gradient: linear-gradient(135deg, hsl(38, 92%, 95%) 0%, hsl(38, 92%, 85%) 100%);
 		--error-gradient: linear-gradient(135deg, hsl(0, 84%, 98%) 0%, hsl(0, 84%, 93%) 100%);
-		--link: #6366f1;
+
 		--border-radius: 8px;
 		--font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 		--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -82,6 +87,7 @@
 		--primary-shadow-color: rgba(40, 19, 48, 0.2);
 		--global-transition: all 0.2s ease;
 		color-scheme: light;
+		margin: 0;
 		background: var(--bg-1);
 		color: var(--fg-1);
 		font-family: var(--font);
