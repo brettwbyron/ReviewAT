@@ -144,7 +144,7 @@
 
   // Navigate to GitHub pages prefixed account page
   function goToAccount(path: string) {
-    goto(`${githubConfig.repo}${path}`);
+    goto(`${window.location.origin}/${githubConfig.repo}${path}`);
   }
 
   // Toggle admin capabilities on customer routes
@@ -973,7 +973,7 @@
 
 <nav class="navbar">
   <div class="nav-left">
-    <a class="nav-logo" href={githubConfig.repo}>
+    <a class="nav-logo" href={`${window.location.origin}/${githubConfig.repo}`}>
       <svg id="V2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 880 234.6">
         <defs>
           <style>
