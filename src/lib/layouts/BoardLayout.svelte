@@ -104,6 +104,7 @@
       isAdmin: isAdminUser,
       timestamp: Date.now()
     };
+    clearAllCustomerSessions(); // Clear any previous sessions
     sessionStorage.setItem(getSessionKey(id), JSON.stringify(sessionData));
   }
 
@@ -331,7 +332,6 @@
     if (adminPasswordInput === ADMIN_PASSWORD) {
       isAdminAuthenticated = true;
       adminPasswordError = '';
-      clearAllCustomerSessions(); // Clear any customer sessions
       saveSession('admin', true); // Save admin session
       loadAdminCustomers();
       goToAccount('/admin');
