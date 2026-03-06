@@ -22,7 +22,7 @@
 
   // GitHub Configuration from environment variables
   const GITHUB_OWNER = import.meta.env.VITE_GITHUB_OWNER || 'your-github-username';
-  const GITHUB_REPO = import.meta.env.VITE_GITHUB_REPO || 'uat-app';
+  const GITHUB_REPO = import.meta.env.VITE_GITHUB_REPO || '';
   const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || 'your-github-token';
   const GITHUB_BRANCH = import.meta.env.VITE_GITHUB_BRANCH || 'data';
   const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'password-for-admin-login';
@@ -84,14 +84,14 @@
   let viewMode = $state<ViewMode>('landing');
 
   // Debug
-  $inspect('customerId',customerId).with(console.log);
-  $inspect('isAuthenticated',isAuthenticated).with(console.log);
-  $inspect('isAdmin',isAdmin).with(console.log);
-  $inspect('usernameInput',usernameInput).with(console.log);
-  $inspect('passwordInput',passwordInput).with(console.log);
-  $inspect('viewMode',viewMode).with(console.log);
-  $inspect('isAdminMode',isAdminMode).with(console.log);
-  $inspect('isAdminAuthenticated',isAdminAuthenticated).with(console.log);
+  // $inspect('customerId',customerId).with(console.log);
+  // $inspect('isAuthenticated',isAuthenticated).with(console.log);
+  // $inspect('isAdmin',isAdmin).with(console.log);
+  // $inspect('usernameInput',usernameInput).with(console.log);
+  // $inspect('passwordInput',passwordInput).with(console.log);
+  // $inspect('viewMode',viewMode).with(console.log);
+  // $inspect('isAdminMode',isAdminMode).with(console.log);
+  // $inspect('isAdminAuthenticated',isAdminAuthenticated).with(console.log);
 
   // Session storage helpers
   function getSessionKey(id: string): string {
@@ -142,9 +142,9 @@
     isAdminMode = true;
   }
 
-  // Navigate to account page
+  // Navigate to GitHub pages prefixed account page
   function goToAccount(path: string) {
-    goto(path);
+    goto(`${githubConfig.repo}${path}`);
   }
 
   // Toggle admin capabilities on customer routes
@@ -169,7 +169,7 @@
     isAdmin = false;
     
     // Navigate to landing page
-    goto('/');
+    goToAccount('/');
   }
 
   // Load data with session restore
@@ -334,7 +334,7 @@
       clearAllCustomerSessions(); // Clear any customer sessions
       saveSession('admin', true); // Save admin session
       loadAdminCustomers();
-      goto('/admin');
+      goToAccount('/admin');
     } else {
       adminPasswordError = 'Incorrect admin password';
     }
@@ -354,7 +354,7 @@
   
   // Handle admin customer selection
   function handleAdminSelectCustomer(selectedCustomerId: string) {
-    goto(`/${selectedCustomerId}`);
+    goToAccount(`/${selectedCustomerId}`);
   }
   
   // Handle admin customer creation
@@ -464,7 +464,7 @@
       showToast('Data loaded successfully', 'success');
       
       // Navigate to customer route so session persists on reload
-      goto(`/${id}`);
+      goToAccount(`/${id}`);
     } else {
       passwordError = result.error || 'Login failed';
     }
@@ -973,7 +973,7 @@
 
 <nav class="navbar">
   <div class="nav-left">
-    <a class="nav-logo" href="/">
+    <a class="nav-logo" href={githubConfig.repo}>
       <svg id="V2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 880 234.6">
         <defs>
           <style>

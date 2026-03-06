@@ -2,9 +2,9 @@
 
 ## Sign in
 
-Head to the admin page (https://brettwbyron.github.io/ReviewAT/admin) and use the password `admin` to log in as an admin. I have permissions for this demo site set to "read only", so you will see errors if you try to make an account or save any changes to the demo account.
+Click the "Admin Login" and use the password `admin` to log in as an administrator. I have permissions for this demo site set to "read only", so you will see errors if you try to make an account or make any changes to the demo account's data.
 
-You can view the demo account by going to the demo account page (https://brettwbyron.github.io/ReviewAT/demo) and use the password `guest` to log in as a user.
+You can log into the Demo account as a user by going to the demo account page (https://brettwbyron.github.io/ReviewAT/demo) and use the password `guest` to log in as a user.
 
 ## GitHub UAT Board Setup Instructions
 
