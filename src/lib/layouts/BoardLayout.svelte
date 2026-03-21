@@ -4,6 +4,7 @@
   import { hashPassword, listAllDataFromGitHub, loadDataFromGitHub, loadDataFromGitHubAdmin, saveDataToGitHub, deleteDataFromGitHub, getDefaultColumns, fetchCurrentBoardData, detectConflicts } from '$lib/utils';
   import type { GitHubConfig } from '$lib/utils';
   import { goto } from '$app/navigation';
+  import { browser } from '$app/environment';
   
   // Components
   import ToastComponent from '$lib/components/Toast.svelte';
@@ -143,11 +144,6 @@
     isAdminMode = true;
   }
 
-  // Navigate to GitHub pages prefixed account page
-  function goToAccount(path: string) {
-    goto(`${window.location.origin}/${githubConfig.repo}${path}`);
-  }
-
   // Toggle admin capabilities on customer routes
   function toggleAdminView() {
     isAdmin = !isAdmin;
@@ -170,7 +166,7 @@
     isAdmin = false;
     
     // Navigate to landing page
-    goToAccount('/');
+    goto('/');
   }
 
   // Load data with session restore
@@ -334,7 +330,7 @@
       adminPasswordError = '';
       saveSession('admin', true); // Save admin session
       loadAdminCustomers();
-      goToAccount('/admin');
+      goto('/admin');
     } else {
       adminPasswordError = 'Incorrect admin password';
     }
@@ -354,7 +350,7 @@
   
   // Handle admin customer selection
   function handleAdminSelectCustomer(selectedCustomerId: string) {
-    goToAccount(`/${selectedCustomerId}`);
+    goto(`/${selectedCustomerId}`);
   }
   
   // Handle admin customer creation
@@ -464,7 +460,7 @@
       showToast('Data loaded successfully', 'success');
       
       // Navigate to customer route so session persists on reload
-      goToAccount(`/${id}`);
+      goto(`/${id}`);
     } else {
       passwordError = result.error || 'Login failed';
     }
@@ -964,7 +960,7 @@
 
   function getNotifyTeamMailto(): string {
     const subject = encodeURIComponent(`UAT Alert! - ${displayName} needs attention`);
-    const baseUrl = `${window.location.origin}${window.location.pathname}`;
+    const baseUrl = browser ? `${window.location.origin}${window.location.pathname}` : '';
     const uatUrl = `${baseUrl}#${usernameInput}`;
     const body = encodeURIComponent(`The UAT page for ${displayName} has sent an alert to the team.\n\nPlease check the UAT page as soon as possible:\n${uatUrl}\n\n`);
     return `mailto:${contactEmails}?subject=${subject}&body=${body}`;
@@ -973,7 +969,7 @@
 
 <nav class="navbar">
   <div class="nav-left">
-    <a class="nav-logo" href={`${window.location.origin}/${githubConfig.repo}`}>
+    <a class="nav-logo" href="/">
       <svg id="V2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 880 234.6">
         <defs>
           <style>
@@ -1047,7 +1043,7 @@
         <ButtonComponent
           element="button"
           text="Dashboard"
-          onClick={() => goToAccount(`/${usernameInput}`)}
+          onClick={() => goto(`/${usernameInput}`)}
           type="hollow"
         />
       {/if}
@@ -1073,7 +1069,7 @@
       <ButtonComponent
         element="button"
         text="Accounts"
-        onClick={() => goToAccount('/admin')}
+        onClick={() => goto('/admin')}
         type="hollow"
       />
     {/if}

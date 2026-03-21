@@ -4,19 +4,7 @@ This guide explains how to deploy your UAT board app to GitHub Pages.
 
 ## Quick Setup
 
-### 1. Update Repository Name in Config
-
-**Important**: In [svelte.config.js](svelte.config.js), change `/uat-app` to match your actual repository name:
-
-```javascript
-paths: {
-  base: process.env.NODE_ENV === 'production' ? '/your-repo-name' : ''
-}
-```
-
-For example, if your repo is `github-uat-board`, use `/github-uat-board`.
-
-### 2. Configure GitHub Secrets
+### 1. Configure GitHub Secrets
 
 Your environment variables need to be stored as GitHub repository secrets so they're available during the build:
 
@@ -32,13 +20,15 @@ Your environment variables need to be stored as GitHub repository secrets so the
 | `VITE_GITHUB_BRANCH` | `data` (or your branch name for data storage) |
 | `VITE_ADMIN_PASSWORD` | Your admin panel password |
 
-### 3. Enable GitHub Pages
+**Note:** The base path is automatically configured using `VITE_GITHUB_REPO`. When building for production, the site will use `/{VITE_GITHUB_REPO}` as the base path. Locally, it uses `/`.
+
+### 2. Enable GitHub Pages
 
 1. Go to **Settings** → **Pages**
 2. Under **Source**, select **GitHub Actions**
 3. That's it! GitHub Actions will handle the deployment
 
-### 4. Push to Deploy
+### 3. Push to Deploy
 
 ```bash
 git add .

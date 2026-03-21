@@ -148,7 +148,7 @@
   }
 
   .login-btn:hover:not(:disabled) {
-    background: var(--primary-hover);
+    background: var(--primary-fg);
     box-shadow: var(--shadow-md);
     transform: translateY(-1px);
   }
@@ -177,7 +177,7 @@
   }
   
   .forgot-password-link:hover {
-    color: var(--primary-hover);
+    color: var(--primary-fg);
   }
 
   .admin-login-link {
