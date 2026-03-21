@@ -166,7 +166,7 @@
     isAdmin = false;
     
     // Navigate to landing page
-    goto('/');
+    goto('/ReviewAT/');
   }
 
   // Load data with session restore
@@ -330,7 +330,7 @@
       adminPasswordError = '';
       saveSession('admin', true); // Save admin session
       loadAdminCustomers();
-      goto('/admin');
+      goto('/ReviewAT/admin');
     } else {
       adminPasswordError = 'Incorrect admin password';
     }
@@ -350,7 +350,7 @@
   
   // Handle admin customer selection
   function handleAdminSelectCustomer(selectedCustomerId: string) {
-    goto(`/${selectedCustomerId}`);
+    goto(`/ReviewAT/${selectedCustomerId}`);
   }
   
   // Handle admin customer creation
@@ -460,7 +460,7 @@
       showToast('Data loaded successfully', 'success');
       
       // Navigate to customer route so session persists on reload
-      goto(`/${id}`);
+      goto(`/ReviewAT/${id}`);
     } else {
       passwordError = result.error || 'Login failed';
     }
@@ -969,7 +969,7 @@
 
 <nav class="navbar">
   <div class="nav-left">
-    <a class="nav-logo" href="/">
+    <button type="button" class="nav-logo" onclick={() => goto('/ReviewAT/')}>
       <svg id="V2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 880 234.6">
         <defs>
           <style>
@@ -1035,7 +1035,7 @@
           </g>
         </g>
       </svg>
-    </a>
+    </button>
   </div>
   <div class="nav-right">
     {#if isAuthenticated}
@@ -1043,7 +1043,7 @@
         <ButtonComponent
           element="button"
           text="Dashboard"
-          onClick={() => goto(`/${usernameInput}`)}
+          onClick={() => goto(`/ReviewAT/${usernameInput}`)}
           type="hollow"
         />
       {/if}
@@ -1069,7 +1069,7 @@
       <ButtonComponent
         element="button"
         text="Accounts"
-        onClick={() => goto('/admin')}
+        onClick={() => goto('/ReviewAT/admin')}
         type="hollow"
       />
     {/if}
@@ -1234,6 +1234,10 @@
     width: auto;
     height: 54px;
     display: flex;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
 
   @media (max-width: 768px) {
