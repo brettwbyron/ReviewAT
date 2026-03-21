@@ -611,8 +611,8 @@
     top: 50%;
     transform: translateY(-50%) !important;
     padding: 0.25rem;
-    border: none;
-    background: transparent;
+    border: none !important;
+    background: transparent !important;
     cursor: pointer;
     height: 100%;
     width: auto;
