@@ -4,6 +4,7 @@
   import { hashPassword, listAllDataFromGitHub, loadDataFromGitHub, loadDataFromGitHubAdmin, saveDataToGitHub, deleteDataFromGitHub, getDefaultColumns, fetchCurrentBoardData, detectConflicts } from '$lib/utils';
   import type { GitHubConfig } from '$lib/utils';
   import { goto } from '$app/navigation';
+  import { resolve } from '$app/paths';
   import { browser } from '$app/environment';
   
   // Components
@@ -84,16 +85,6 @@
   type ViewMode = 'landing' | 'customerLogin' | 'adminLogin';
   let viewMode = $state<ViewMode>('landing');
 
-  // Debug
-  // $inspect('customerId',customerId).with(console.log);
-  // $inspect('isAuthenticated',isAuthenticated).with(console.log);
-  // $inspect('isAdmin',isAdmin).with(console.log);
-  // $inspect('usernameInput',usernameInput).with(console.log);
-  // $inspect('passwordInput',passwordInput).with(console.log);
-  // $inspect('viewMode',viewMode).with(console.log);
-  // $inspect('isAdminMode',isAdminMode).with(console.log);
-  // $inspect('isAdminAuthenticated',isAdminAuthenticated).with(console.log);
-
   // Session storage helpers
   function getSessionKey(id: string): string {
     return `uat-session-${id}`;
@@ -166,7 +157,7 @@
     isAdmin = false;
     
     // Navigate to landing page
-    goto('/ReviewAT/');
+    goto(resolve('/').toString());
   }
 
   // Load data with session restore
@@ -330,7 +321,7 @@
       adminPasswordError = '';
       saveSession('admin', true); // Save admin session
       loadAdminCustomers();
-      goto('/ReviewAT/admin');
+      goto(resolve('/admin'));
     } else {
       adminPasswordError = 'Incorrect admin password';
     }
@@ -350,7 +341,7 @@
   
   // Handle admin customer selection
   function handleAdminSelectCustomer(selectedCustomerId: string) {
-    goto(`/ReviewAT/${selectedCustomerId}`);
+    goto(resolve(`/${selectedCustomerId}`));
   }
   
   // Handle admin customer creation
@@ -460,7 +451,7 @@
       showToast('Data loaded successfully', 'success');
       
       // Navigate to customer route so session persists on reload
-      goto(`/ReviewAT/${id}`);
+      goto(resolve(`/${id}`));
     } else {
       passwordError = result.error || 'Login failed';
     }
@@ -969,7 +960,7 @@
 
 <nav class="navbar">
   <div class="nav-left">
-    <button type="button" class="nav-logo" onclick={() => goto('/ReviewAT/')}>
+    <a href={resolve('/')} class="nav-logo">
       <svg id="V2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 880 234.6">
         <defs>
           <style>
@@ -1035,15 +1026,14 @@
           </g>
         </g>
       </svg>
-    </button>
+    </a>
   </div>
   <div class="nav-right">
     {#if isAuthenticated}
       {#if !customerRoute && !isAdminRoute}
         <ButtonComponent
-          element="button"
           text="Dashboard"
-          onClick={() => goto(`/ReviewAT/${usernameInput}`)}
+          href={resolve(`/${usernameInput}`)}
           type="hollow"
         />
       {/if}
@@ -1067,9 +1057,8 @@
 
     {#if isAdminAuthenticated && !isAdminRoute}
       <ButtonComponent
-        element="button"
         text="Accounts"
-        onClick={() => goto('/ReviewAT/admin')}
+        href={resolve('/admin')}
         type="hollow"
       />
     {/if}
@@ -1091,7 +1080,6 @@
     {/if}
     {#if isAuthenticated || isAdminAuthenticated}
       <ButtonComponent
-        element="button"
         text="Logout"
         onClick={logout}
         type="cancel"

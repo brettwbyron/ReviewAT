@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import adapter from '@sveltejs/adapter-static';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -7,7 +8,7 @@ const config = {
 			fallback: '404.html'
 		}),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/ReviewAT' : ''
+			base: `/${process.env.VITE_GITHUB_REPO}`
 		}
 	},
 	compilerOptions: { experimental: { async: true } }
