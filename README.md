@@ -17,7 +17,7 @@ This guide walks you through configuring the UAT board to use GitHub for data st
 - Basic understanding of GitHub personal access tokens
 
 ## Step 1: Fork this repository
-1. [Fork this repo](/fork) 
+1. [Fork this repo](https://github.com/brettwbyron/ReviewAT/fork) 
    - **Make sure to uncheck "Copy the main branch only"**. This sets you up with dummy data but, more importantly, removes the necessary step of creating a `data` branch to host your data (JSON) files.
 
 If you rename the repo or the `data` branch, you will need to reflect that change in your `VITE_` secrets and `.env` file.
