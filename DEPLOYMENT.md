@@ -53,10 +53,8 @@ The [.github/workflows/deploy.yml](.github/workflows/deploy.yml) workflow:
 ### Account URLs
 Share account-specific URLs like:
 ```
-https://your-username.github.io/your-repo-name/#account-name
+https://your-username.github.io/your-repo-name/account-name
 ```
-
-Each account gets their own URL with their account ID after the `#`.
 
 ## Manual Deployment (Optional)
 
@@ -72,7 +70,7 @@ npm run build
 
 ## Security Note
 
-⚠️ **Environment variables in GitHub Secrets are bundled into the static build.** They're not truly secret - anyone can view them in the browser's DevTools by inspecting the compiled JavaScript.
+**Environment variables in GitHub Secrets are bundled into the static build.** They're not truly secret - anyone can view them in the browser's DevTools by inspecting the compiled JavaScript.
 
 GitHub Secrets just prevent them from:
 - Being visible in your public repository code

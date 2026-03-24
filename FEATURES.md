@@ -405,50 +405,6 @@ A comprehensive Kanban-style UAT (User Acceptance Testing) board for tracking us
 - Cannot see admin fields (Type, Owner)
 - Cannot add tasks when UAT expired
 
-### Data Structure
-
-**BoardData** (stored in JSON):
-```typescript
-{
-  displayName?: string;
-  uatEndDate?: string;
-  devSiteUrl?: string;
-  uatFolderUrl?: string;
-  contactEmails?: string;
-  passwordHash: string;
-  version: number;
-  columns: Column[];
-  disableAddTask: boolean;
-}
-```
-
-**Task**:
-```typescript
-{
-  id: number;
-  description: string;
-  type?: 'Change Request' | 'Issue' | 'Feature';
-  device: 'All' | 'Desktop' | 'Mobile';
-  feedback: FeedbackItem[];
-  section: string;
-  owner?: 'PM' | 'Developer' | 'Account';
-  createdAt: string;
-  updatedAt: string;
-  locked?: boolean;
-  images?: string[];
-}
-```
-
-**FeedbackItem**:
-```typescript
-{
-  text: string;
-  author: 'account' | 'pm' | 'developer';
-  createdAt: string;
-  editedAt?: string;
-}
-```
-
 ## Technical Details
 
 ### Architecture
@@ -483,7 +439,7 @@ A comprehensive Kanban-style UAT (User Acceptance Testing) board for tracking us
 ## Usage Tips
 
 ### For Customers
-1. Navigate to your unique URL (e.g., `#acme-corp`)
+1. Navigate to your unique URL (e.g., `/acme-corp`)
 2. Enter your password
 3. Create new tasks using "+ Add Task" button
 4. Drag tasks to "Done" when reviewed/approved

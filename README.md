@@ -16,7 +16,13 @@ This guide walks you through configuring the UAT board to use GitHub for data st
 - This repository (user account data will be stored in the `VITE_GITHUB_BRANCH` secret, by default `data`, branch)
 - Basic understanding of GitHub personal access tokens
 
-## Step 1: Create GitHub Personal Access Token
+## Step 1: Fork this repository
+1. [Fork this repo](/fork) 
+   - **Make sure to uncheck "Copy the main branch only"**. This sets you up with dummy data but, more importantly, removes the necessary step of creating a `data` branch to host your data (JSON) files.
+
+If you rename the repo or the `data` branch, you will need to reflect that change in your `VITE_` secrets and `.env` file.
+
+## Step 2: Create GitHub Personal Access Token
 
 1. Go to **GitHub Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens**
 2. Click **Generate new token**
@@ -44,7 +50,7 @@ Since the token is embedded in client-side code (visible in browser DevTools), t
 
 Token expiration is designed for **server-side secrets** where rotation adds security. For client-side tokens that are already exposed, expiration only creates unnecessary maintenance burden without improving security.
 
-## Step 2: Configure Environment Variables
+## Step 3: Configure Environment Variables
 
 Create a `.env` file in the project root:
 
@@ -57,22 +63,11 @@ VITE_ADMIN_PASSWORD=your-secure-admin-password
 ```
 
 **Important Notes:**
-- ⚠️ **The `.env` file is NOT truly secure** - Vite bundles these values into the client code
+- **The `.env` file is NOT truly secure** - Vite bundles these values into the client code
 - These are visible in browser DevTools just like hardcoded values
 - The `.env` file is mainly for organization and keeping secrets out of version control
 - **Never commit `.env` to git** - it's already in `.gitignore`
 - For production builds on GitHub Pages, you'll need to set these as repository secrets or build environment variables
-
-## Step 3: Create Data Directory
-
-In your GitHub repository, create a `data` branch and `/data/` directory within that branch:
-
-1. Go to your repository on GitHub
-2. Click **Add file** → **Create new file**
-3. Type `data/.gitkeep` as the filename
-4. Commit the file
-
-This directory will store account data files.
 
 ## Step 4: Deploy to GitHub Pages
 
