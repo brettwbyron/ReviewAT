@@ -16,9 +16,10 @@ This guide walks you through configuring the UAT board to use GitHub for data st
 - This repository (user account data will be stored in the `VITE_GITHUB_BRANCH` secret, by default `data`, branch)
 - Basic understanding of GitHub personal access tokens
 
-## Step 1: Fork this repository
-1. [Fork this repo](https://github.com/brettwbyron/ReviewAT/fork) 
-   - **Make sure to uncheck "Copy the main branch only"**. This sets you up with dummy data but, more importantly, removes the necessary step of creating a `data` branch to host your data (JSON) files.
+## Step 1: Fork or clone this repository
+[Forking](https://github.com/brettwbyron/ReviewAT/fork) - **Make sure to uncheck "Copy the main branch only"**. This sets you up with dummy data but, more importantly, removes the necessary step of creating a `data` branch to host your data (JSON) files.
+
+Cloning - **Make sure to have a place to save your data.** Make sure you have a branch named "data" that contains a folder named "data"
 
 If you rename the repo or the `data` branch, you will need to reflect that change in your `VITE_` secrets and `.env` file.
 

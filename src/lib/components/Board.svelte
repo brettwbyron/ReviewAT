@@ -361,7 +361,7 @@
                 {/if}
               {/if}
             </span>
-            {#if !isUatEndingSoon}
+            {#if !isUatEndingSoon && !isUatExpired}
               <p class="uat-deadline-warning subtle-text">Once this deadline passes, no tasks may be added</p>
             {/if}
             {#if isUatExpired}
