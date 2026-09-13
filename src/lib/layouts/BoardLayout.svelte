@@ -1227,6 +1227,9 @@
     padding: 0;
     cursor: pointer;
   }
+  .nav-logo svg {
+    height: 100%;
+  }
 
   @media (max-width: 768px) {
     .navbar {
